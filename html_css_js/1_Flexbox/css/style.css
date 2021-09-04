@@ -20,22 +20,19 @@ flex-direction: column;
 }
 
 .row-container {
-    position: relative; /*теперь этот контейнер точка отсчета для своей ребетни*/
+    display: flex;
     background-color: rgb(153, 175, 185);
     min-width: 200px;
     min-height: 60px;
     justify-content: center;
+    align-items: center;
     margin:  10px 100px 10px 100px;
 }
 
 .swaip-windows {
-    position: absolute; /*мое положение абсолютно и при этом отсчитывается от родителя*/
-    top: 50%; /*от верха на 50% высоты блока вниз*/
-    left: 50%; /*слева на 50% ширины блока вправо*/
     text-align-last: center;
     background-color: rgb(189, 145, 145);
-    transform: translate(-50%, -50% ); /*двигаем на ширину и высоту самого swaip-windows*/
-   
+     
   }
 
 .Box-21 {

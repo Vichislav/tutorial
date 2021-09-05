@@ -1,24 +1,22 @@
- .container-1 {
+ .container {
  display: flex;
  flex-direction: column;
  }
 
-.container-1 div {
-
+.box_1 {
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(70, 132, 156);
 }
-
-.Box-1 {
-flex: 2;
-order: 1;
+.box_1_1 {
+    background-color: rgb(44, 157, 202);
 }
-
-.Box-2 {
-flex: 1;
-order: 2;
-display: flex;
-flex-direction: column;
+.box_1_2 {
+    background-color: rgb(62, 173, 71);
 }
-
+.box_1_3 {
+    background-color: rgb(135, 151, 62);
+}
 .row-container {
     display: flex;
     background-color: rgb(153, 175, 185);
@@ -28,52 +26,28 @@ flex-direction: column;
     align-items: center;
     margin:  10px 100px 10px 100px;
 }
-
+.swaip {
+    background-color: rgb(114, 170, 196);
+    visibility: hidden;
+    opacity: 0;
+    transform: translate(0px, -100%);
+}
+.open {
+    visibility: visible;
+    opacity: 1;
+    transform: translate(0px, 0%);
+}
 .swaip-windows {
     text-align-last: center;
     background-color: rgb(189, 145, 145);
      
   }
 
-.Box-21 {
-display: flex;
-flex-direction: row;
-flex: 2;
-}
-.Box-211,.Box-212, .Box-213 {
-flex: 1;
-}
-.Box-212 {
-display: flex;
-justify-content: center;
-min-height: 400px;
-}
+
 .photo {
     width: 200px;
     height: 200px;
     padding-top: 20px;
     border-radius: 50%;
 }
-.Box-22 {
-display: flex;
-flex-direction: row;
-flex: 2;
-}
-.Box-221, .Box-222, .Box-223 {
-flex: 1;
-}
-
-.Box-23 {
-display: flex;
-flex-direction: row;
-flex: 1;
-}
-.Box-231, .Box-232, .Box-233 {
-flex: 1;
-}
-
-.Box-3 {
-flex: 1;
-order: 3;
-    }
 

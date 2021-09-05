@@ -28,21 +28,31 @@
                             <div class="item-pizza__title">Size</div>
                             <div class="item-pizza__text">Here you can choose the size of your pizza </div>
                             <div class="item-pizza__list">
-                                <ul>
-                                    <li>25 см</li>
-                                    <li>30 см</li>
-                                    <li>35 см</li>
-                                </ul>
+                                <div class="button">
+                                    <button id="btn25">25cм</button>
+                                </div>
+                                <div class="button">
+                                    <button id="btn30">30cм</button>
+                                </div>
+                                <div class="button">
+                                    <button id="btn35">35cм</button>
+                                </div>                               
                             </div>
                         </div>
                     </div>
                     <div class="pizza__column">
                         <div class="item-pizza">
-                            <div class="item-pizza__icon">
+                            <div id="point" class="item-pizza__icon">
                                 <img src="img/022.jpg" alt="ну ёлки" />
                             </div>
                             <div class="item-pizza__title">Type</div>
                             <div class="item-pizza__text">Here you can choose the type of your pizza </div>
+                            <div class="item-pizza_img">
+                                <img src="img/044.jpg" alt="ну ёлки" />
+                            </div>
+                            <div class="item-pizza__output">
+                                <p id="size">cм</p>
+                            </div>
                         </div>
                     </div>
                     <div class="pizza__column">
@@ -57,5 +67,6 @@
                 </div>
             </div>
         </div>
+        <script src="../3_Flexbox/js/pizza.js"></script>
     </body>
 </html>

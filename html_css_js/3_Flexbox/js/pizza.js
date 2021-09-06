@@ -26,3 +26,35 @@ btn35.onclick = function () {
     outputsize(currentSize);
 }
 
+function cheeseSelection() {
+    let chbox;
+    chbox = document.getElementById('check1');
+        if (chbox.checked) {
+            console.log("сырный борт");
+        }
+        else {
+            console.log('не выбран');
+        }
+}
+
+function dablCheeseSelection() {
+    let chbox;
+    chbox = document.getElementById('check2');
+        if (chbox.checked) {
+            console.log("двойной сыр");
+        }
+        else {
+            console.log('не выбран');
+        }
+}
+
+function arugulaSelection() {
+    let chbox;
+    chbox = document.getElementById('check3');
+            if (chbox.checked) {
+                console.log("руккола");
+            }
+            else {
+                console.log('не выбран');
+            }
+}

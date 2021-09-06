@@ -16,8 +16,17 @@
         <div class="pizza">
             <div class="pizza__body">
                 <div class="pizza__header">
-                    <div class="pizza__title title">Pizza</div>
+                    <div class="pizza__title title">Pizza Flex</div>
                     <div class="pizza__text">This is the best pizza tastes like Felxbox</div>
+                    <div class="pizza__basket">
+                        <div class="img-pizza__basket">
+                            <img src="img/05.jpg" alt="ну ёлки" />
+                        </div>
+                        <div class="item-pizza__basket">Корзина</div>
+                        <div class="img-pizza__basket">
+                            <img src="img/06.jpg" alt="ну ёлки" />
+                        </div>
+                    </div>
                 </div>
                 <div class="pizza__row">
                     <div class="pizza__column">
@@ -62,7 +71,34 @@
                             </div>
                             <div class="item-pizza__title">Composition</div>
                             <div class="item-pizza__text">Here you can choose the composition of your pizza </div>
+                            <div class="item-pizza__dop">
+                                <p class="item-pizza-dop__text">сырный борт</p>
+                                <div class="item-pizza-dop__check">
+                                    <input type="checkbox" id="check1" onchange="cheeseSelection()">
+                                </div>
+                            </div>
+                            <div class="item-pizza__dop">
+                                <p class="item-pizza-dop__text">двойной сыр</p>
+                                <div class="item-pizza-dop__check">
+                                    <input type="checkbox" id="check2" onchange="dablCheeseSelection()">
+                                </div>
+                            </div>
+                            <div class="item-pizza__dop">
+                                <p class="item-pizza-dop__text">руккола</p>
+                                <div class="item-pizza-dop__check">
+                                    <input type="checkbox" id="check3" onchange="arugulaSelection()">
+                                </div>
+                            </div>
+
                         </div>
+                    </div>
+                </div>
+                <div class="pizza__miniRow">
+                    <div class="item-pizza__miniRow">
+                        <input type="text" name="key" placeholder="кол-во пицц?"></input>
+                    </div>
+                    <div class="item-pizza__miniRow">
+                        <button id="toBasket">В корзину</button>
                     </div>
                 </div>
             </div>

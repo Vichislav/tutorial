@@ -1,10 +1,16 @@
 console.log("Im working");
 
 let currentSize;
+let cheeseBoard = "сырный борт";
+let doubleCheese = "двойной сыр";
+let arugula  = "руккола"; 
 var btn25 = document.getElementById("btn25");
 var btn30 = document.getElementById("btn30");
 var btn35 = document.getElementById("btn35");
-
+let chbox1 = document.getElementById('check1');
+let chbox2 = document.getElementById('check2');
+let chbox3 = document.getElementById('check3');
+let toBasket = document.querySelector("toBasket");
 
 function outputsize(currentSize) {
     document.getElementById('size').innerHTML = (currentSize +" см");
@@ -27,34 +33,32 @@ btn35.onclick = function () {
 }
 
 function cheeseSelection() {
-    let chbox;
-    chbox = document.getElementById('check1');
-        if (chbox.checked) {
-            console.log("сырный борт");
-        }
-        else {
-            console.log('не выбран');
-        }
+    if (chbox1.checked) {
+        console.log(cheeseBoard);
+    }
+    else {
+        console.log('не выбран');
+    }
 }
 
 function dablCheeseSelection() {
-    let chbox;
-    chbox = document.getElementById('check2');
-        if (chbox.checked) {
-            console.log("двойной сыр");
-        }
-        else {
-            console.log('не выбран');
-        }
+    if (chbox2.checked) {
+        console.log(doubleCheese);
+    }
+    else {
+        console.log('не выбран');
+    }
 }
 
 function arugulaSelection() {
-    let chbox;
-    chbox = document.getElementById('check3');
-            if (chbox.checked) {
-                console.log("руккола");
-            }
-            else {
-                console.log('не выбран');
-            }
+    if (chbox3.checked) {
+        console.log(arugula);
+    }
+    else {
+        console.log('не выбран');
+    }
 }
+
+toBasket.addEventListener("click", function () {
+    document.querySelector(textarea-pizza__basket) = doubleCheese;    
+} )

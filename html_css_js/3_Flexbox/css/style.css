@@ -201,3 +201,15 @@ h1, h2, h3, h4, h5, h6 {
   border: 2px solid #afafaf;
   margin: 10px 0px 0px 10px;
 }
+.input-pizza__miniRow  {
+  border-radius: 5px;
+  text-align: center;
+  border: 2px solid #616161;
+}
+
+.textarea-pizza__basket {
+  min-width: 300px;
+  border-radius: 5px;
+  text-align: center;
+  border: 2px solid #616161;
+}

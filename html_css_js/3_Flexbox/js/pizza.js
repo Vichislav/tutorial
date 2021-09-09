@@ -10,11 +10,16 @@ var btn35 = document.getElementById("btn35");
 let chbox1 = document.getElementById('check1');
 let chbox2 = document.getElementById('check2');
 let chbox3 = document.getElementById('check3');
-let toBasket = document.querySelector("toBasket");
+var toBasket = document.getElementById("toBasket");
+let type1 = "Маргарита";
+//let numberPizza = document.querySelector("input-pizza__miniRow").ariaValueMax;
+
+//let textarea = document.getElementsByName("one");
 
 function outputsize(currentSize) {
     document.getElementById('size').innerHTML = (currentSize +" см");
 }
+
 
 btn25.onclick = function () {
     currentSize = 25;
@@ -59,6 +64,12 @@ function arugulaSelection() {
     }
 }
 
-toBasket.addEventListener("click", function () {
-    document.querySelector(textarea-pizza__basket) = doubleCheese;    
-} )
+function outputBasket(currentSize, cheeseBoard, doubleCheese, arugula) {
+    console.log(currentSize +" см" + cheeseBoard + doubleCheese + arugula)
+    document.getElementById('input__basket').textContent = (type1 +", " + currentSize + " см," + " " + cheeseBoard + ", " + doubleCheese + ", " + arugula);
+}
+
+toBasket.onclick = function () {
+    
+    outputBasket(currentSize, cheeseBoard, doubleCheese, arugula);
+}

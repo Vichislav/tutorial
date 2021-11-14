@@ -15,7 +15,8 @@ public class Demo {
         if (hole.fits(rpeg)) {
             System.out.println("Round peg r5 fits round hole r5.");
         }
-
+        //создаем экземпляр класса SquarePeg c аргументом 2 и записываем ссылку на НЕГО в smallSqPeg типа SquarePeg
+        //smallSqPeg ссылка а  SquarePeg (слева) это то как мы с ней работаем
         SquarePeg smallSqPeg = new SquarePeg(2);
         SquarePeg largeSqPeg = new SquarePeg(20);
         // hole.fits(smallSqPeg); // Не скомпилируется.

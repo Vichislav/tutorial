@@ -5,6 +5,7 @@ package square;
  * после бывших разработчиков). Но мы должны как-то интегрировать их в нашу
  * систему.
  */
+
 public class SquarePeg {
     private double width;
 
@@ -18,6 +19,7 @@ public class SquarePeg {
 
     public double getSquare() {
         double result;
+        //Math.pow(this.width, 2); возведение this.width в степень 2
         result = Math.pow(this.width, 2);
         return result;
     }

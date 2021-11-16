@@ -1,19 +1,14 @@
 package equation;
 
 public class oneRoot {
-    private int a;
-    private int b;
-    private int c;
-    private int root;
 
-    oneRoot (int a, int b, int c) {
-        this.a = a;
-        this.b = a;
-        this.c = a;
+    private double root;
 
+    oneRoot (double a, double b, double c) {
+       root = -b/2*a;
     }
 
-    public int getRoot() {
+    public double getRoot() {
         return root;
     }
 }

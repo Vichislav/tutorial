@@ -32,12 +32,11 @@ public class Main  {
         discriminant firstDiscriminant = new discriminant(a, b, c);
         double d = firstDiscriminant.getDiscriminantRoot();
 
-        System.out.println("Значение дискрименанта составило" +d );
+        System.out.println("Значение дискрименанта составило " + d );
 
         if  (d < 0) {
             System.out.println("уравнение не имеет корней");
         }
-
         else if (d == 0) {
             oneRoot firstSolver = new oneRoot(a, b, c);
             double x1 = firstSolver.getRoot();
@@ -48,8 +47,8 @@ public class Main  {
             double x1 = secondSolver.getRoot1();
             double x2 = secondSolver.getRoot2();
             System.out.println("уравнение имеем два корня " + "\n" +
-                    "первый корень равен = "+ x1 + "\n" +
-                    "второй корень равен = "+ x2 );
+                    "первый корень == " + x1 + "\n" +
+                    "второй корень == " + x2 );
         }
 
 

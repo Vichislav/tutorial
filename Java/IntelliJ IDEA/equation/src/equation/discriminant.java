@@ -4,7 +4,7 @@ public class discriminant {
     private double discriminantRoot;
 
     discriminant (double a, double b, double c) {
-        discriminantRoot = Math.pow(b,2)-4*a*c;
+        discriminantRoot = Math.pow(b, 2) - 4 * a * c;
 
     }
 

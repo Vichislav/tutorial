@@ -44,7 +44,12 @@ public class Main  {
             System.out.println("уравнение имеем один корень равный " + x1);
         }
         else {
-
+            twoRoot secondSolver = new twoRoot(a, b, c);
+            double x1 = secondSolver.getRoot1();
+            double x2 = secondSolver.getRoot2();
+            System.out.println("уравнение имеем два корня " + "\n" +
+                    "первый корень равен = "+ x1 + "\n" +
+                    "второй корень равен = "+ x2 );
         }
 
 

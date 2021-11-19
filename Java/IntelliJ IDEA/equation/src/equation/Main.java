@@ -3,12 +3,14 @@ package equation;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Main  {
 
     private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in)); //украдено
 
-    public static void main(String[] args) throws IOException { //throws IOException что за ошибки?
+    public static void main(String[] args) throws IOException
+    { //throws IOException что за ошибки?
         double a;
         double b;
         double c;
@@ -29,30 +31,10 @@ public class Main  {
             continueChoice = reader.readLine();
         } while (continueChoice.equalsIgnoreCase("N"));
 
-        discriminant firstDiscriminant = new discriminant(a, b, c);
-        double d = firstDiscriminant.getDiscriminantRoot();
-
-        System.out.println("Значение дискрименанта составило " + d );
-
-        if  (d < 0) {
-            System.out.println("уравнение не имеет корней");
-        }
-        else if (d == 0) {
-            oneRoot firstSolver = new oneRoot(a, b, c);
-            double x1 = firstSolver.getRoot();
-            System.out.println("уравнение имеем один корень равный " + x1);
-        }
-        else {
-            twoRoot secondSolver = new twoRoot(a, b, c);
-            double x1 = secondSolver.getRoot1();
-            double x2 = secondSolver.getRoot2();
-            System.out.println("уравнение имеем два корня " + "\n" +
-                    "первый корень == " + x1 + "\n" +
-                    "второй корень == " + x2 );
-        }
-
-
-
-
+        ArrayList<Double> root = Solver.SolveEquation(a, b, c);
+        // вывод с помощью массива + забор данных из файла
+        for (int i = 0; i < root.size(); i++)
+            System.out.printf("корень №" + (i + 1) + " " + root.get(i) + "\n" );
     }
 }
+

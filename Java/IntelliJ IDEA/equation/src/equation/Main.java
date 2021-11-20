@@ -10,7 +10,10 @@ public class Main  {
     private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in)); //украдено
 
     public static void main(String[] args) throws IOException
-    { //throws IOException что за ошибки?
+    {
+        InputFile.ReadEquationsFromFile("notes4.txt");
+
+        //throws IOException что за ошибки?
         double a = 0.0;
         double b = 0.0;
         double c = 0.0;
@@ -22,7 +25,7 @@ public class Main  {
             boolean isValidB = false;
             boolean isValidC = false;
 
-            while(isValidA == false)
+            while (isValidA == false)
             {
                 System.out.println("Введите коэффициент [a] уравнения типа ax^2 + bx + c");
                 try {
@@ -32,7 +35,7 @@ public class Main  {
                     System.out.println(e.getMessage());
                 }
             }
-            while(isValidB == false)
+            while (isValidB == false)
             {
                 System.out.println("Введите коэффициент [b] уравнения типа ax^2 + bx + c");
                 try {
@@ -42,7 +45,7 @@ public class Main  {
                     System.out.println(e.getMessage());
                 }
             }
-            while(isValidC == false)
+            while (isValidC == false)
             {
                 System.out.println("Введите коэффициент [c] уравнения типа ax^2 + bx + c");
                 try {

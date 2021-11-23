@@ -15,7 +15,8 @@ public class Main  {
         ArrayList<Equation> equations;
 
         File f = new File("notes4.txt");
-        if(f.exists()) {
+
+        if (f.exists()) {
             equations = InputFile.ReadEquationsFromFile("notes4.txt");
 
             for (int i = 0; i < equations.size(); i++)
@@ -28,7 +29,7 @@ public class Main  {
                     System.out.println("Уравнение не имеет корней");
                 else
                     for (int j = 0; j < rootDsa.size(); j++)
-                        System.out.printf("корень №" + (j + 1) + " " + rootDsa.get(j) + "\n" );
+                        System.out.println("корень №" + (j + 1) + " " + rootDsa.get(j) + "\n" );
             }
         }
 
@@ -52,7 +53,7 @@ public class Main  {
             boolean isValidB = false;
             boolean isValidC = false;
 
-            while (isValidA == false)
+            while (!isValidA)
             {
                 System.out.println("Введите коэффициент [a] уравнения типа ax^2 + bx + c");
                 try {
@@ -62,7 +63,7 @@ public class Main  {
                     System.out.println(e.getMessage());
                 }
             }
-            while (isValidB == false)
+            while (!isValidB)
             {
                 System.out.println("Введите коэффициент [b] уравнения типа ax^2 + bx + c");
                 try {
@@ -72,7 +73,7 @@ public class Main  {
                     System.out.println(e.getMessage());
                 }
             }
-            while (isValidC == false)
+            while (!isValidC) // !isValidC тоже самое что isValidC == false
             {
                 System.out.println("Введите коэффициент [c] уравнения типа ax^2 + bx + c");
                 try {
@@ -89,11 +90,12 @@ public class Main  {
         } while (continueChoice.equalsIgnoreCase("N"));
 
         ArrayList<Double> root = Solver.SolveEquation(a, b, c);
+
         if (root == null)
             System.out.println("Уравнение не имеет корней");
         else
             for (int i = 0; i < root.size(); i++)
-                System.out.printf("корень №" + (i + 1) + " " + root.get(i) + "\n" );
+                System.out.println("корень №" + (i + 1) + " " + root.get(i) + "\n" );
     }
 }
 

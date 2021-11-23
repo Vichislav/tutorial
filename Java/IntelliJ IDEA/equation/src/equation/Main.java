@@ -1,6 +1,7 @@
 package equation;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStreamReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,7 +12,33 @@ public class Main  {
 
     public static void main(String[] args) throws IOException
     {
-        InputFile.ReadEquationsFromFile("notes4.txt");
+        ArrayList<Equation> equations;
+
+        File f = new File("notes4.txt");
+        if(f.exists()) {
+            equations = InputFile.ReadEquationsFromFile("notes4.txt");
+
+            for (int i = 0; i < equations.size(); i++)
+            {
+                System.out.println("вот оно как оказывается" + " " + equations.get(i).getA() + " " + equations.get(i).getB() + " " + equations.get(i).getC());
+
+                ArrayList<Double> rootDsa = Solver.SolveEquation(equations.get(i).getA(), equations.get(i).getB(), equations.get(i).getC());
+
+                if (rootDsa == null)
+                    System.out.println("Уравнение не имеет корней");
+                else
+                    for (int j = 0; j < rootDsa.size(); j++)
+                        System.out.printf("корень №" + (j + 1) + " " + rootDsa.get(j) + "\n" );
+            }
+        }
+
+        else {
+            System.out.println("требуемый файл не найден");
+            System.exit(0); // статус 0 - говорит о том что программа завершилась без ошибки
+        }
+
+
+        System.out.println("_______________________________________________");
 
         //throws IOException что за ошибки?
         double a = 0.0;

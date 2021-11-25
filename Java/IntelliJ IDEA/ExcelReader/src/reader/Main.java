@@ -47,20 +47,27 @@ public class Main {
         FileInputStream fis = new FileInputStream("C:/git/tutorial/Java/IntelliJ IDEA/ExcelReader/test.xls");
         Workbook workB = new HSSFWorkbook(fis);
         //________________________лист_0_______строка_2_____ячейка(столбец)_3____забрать_данные_типа_String
-        String result0 = workB.getSheetAt(0).getRow(2).getCell(3).getStringCellValue();
-        System.out.println(result0);
+        //String result0 = workB.getSheetAt(0).getRow(2).getCell(3).getStringCellValue();
+        //System.out.println(result0);
 
         fis.close(); // поработали с потоком, закрыли поток
-        int count = 0;
-        String[] box = new String[0];
+        int count = 0;  // счетчик итераций для for(Row row : workB.getSheetAt(0))
+        String[] box = new String[100];
 
         //перебор всех строк, ячеек(столбцов) с последующим выводом награбленного
-        for(Row row : workB.getSheetAt(0)){
-            for(Cell cell : row){
-                System.out.println(getCellText(cell));
+        for(Row row : workB.getSheetAt(0)){ // перебираем 0 лист файла test.xls по строкам
+            for(Cell cell : row){             // для строки файла test.xls перебираем ячейки
+                System.out.println(getCellText(cell)); // выводим то что нашли в ячейке
+                box [count] = getCellText(cell); // загружаем в массив box, то что получили из test.xls
                 count++;
+
             }
         }
+
+        for (int j=0; j< count; j++) {
+            System.out.println(box [j]);
+        }
+
 
     }
     //метод для вывода из ячейки различных типов данных

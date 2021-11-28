@@ -2,6 +2,7 @@ package reader;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.usermodel.HSSFWorkbookFactory;
 import org.apache.poi.ss.usermodel.*;
@@ -42,26 +43,38 @@ public class Main {
 
         //********************пробуем читать из файла********************//
 
-        FileInputStream fis = new FileInputStream("test.xls");
-        Workbook workA = new HSSFWorkbook(fis);
+        FileInputStream streamA = new FileInputStream("test.xls");
+        Workbook workA = new HSSFWorkbook(streamA);
 
-        FileInputStream fisOne = new FileInputStream("test_1.xls");
-        Workbook workB = new HSSFWorkbook(fisOne);
+        FileInputStream streamB = new FileInputStream("test_1.xls");
+        Workbook workB = new HSSFWorkbook(streamB);
+
+        int count = 2;
+
+        while (count<5) {
+
+            String result0 = workA.getSheetAt(0).getRow(count).getCell(3).getStringCellValue(); // получаем данные 1
+            System.out.println(result0);
+
+            String result1 = workB.getSheetAt(0).getRow(count).getCell(3).getStringCellValue(); // получаем данные 2
+            System.out.println(result1);
 
 
-        String result0 = workA.getSheetAt(0).getRow(2).getCell(3).getStringCellValue();
-        System.out.println(result0);
 
-        String result1 = workB.getSheetAt(0).getRow(2).getCell(3).getStringCellValue();
-        System.out.println(result1);
+            if (!result0.equals(result1)) {
+                // записываем данные 2 в измененном виде
+                Sheet sheet0 = workB.getSheetAt(0);
+                Row row0 = sheet0.getRow(count);
+                Cell cell0 = row0.getCell(3);
+                cell0.setCellValue("изменено");
+            }
+            count++;
 
-        fis.close();
-        fisOne.close();
+        }
 
-        Sheet sheet0 = workB.getSheetAt(0);
-        Row row0 = sheet0.getRow(2);
-        Cell cell0 = row0.getCell(3);
-        cell0.setCellValue("АГА");
+        streamA.close();
+        streamB.close();
+
 
         FileOutputStream writeStream = new FileOutputStream("test_1.xls");
         workB.write(writeStream);

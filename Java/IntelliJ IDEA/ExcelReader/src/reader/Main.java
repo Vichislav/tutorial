@@ -3,12 +3,10 @@ package reader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.hssf.usermodel.HSSFWorkbookFactory;
 import org.apache.poi.ss.usermodel.*;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -44,33 +42,38 @@ public class Main {
 
         //********************пробуем читать из файла********************//
 
-        FileInputStream fis = new FileInputStream("C:/git/tutorial/Java/IntelliJ IDEA/ExcelReader/test.xls");
-        Workbook workB = new HSSFWorkbook(fis);
-        //________________________лист_0_______строка_2_____ячейка(столбец)_3____забрать_данные_типа_String
-        //String result0 = workB.getSheetAt(0).getRow(2).getCell(3).getStringCellValue();
-        //System.out.println(result0);
+        FileInputStream fis = new FileInputStream("test.xls");
+        Workbook workA = new HSSFWorkbook(fis);
 
-        fis.close(); // поработали с потоком, закрыли поток
-        int count = 0;  // счетчик итераций для for(Row row : workB.getSheetAt(0))
-        String[] box = new String[100];
-
-        //перебор всех строк, ячеек(столбцов) с последующим выводом награбленного
-        for(Row row : workB.getSheetAt(0)){ // перебираем 0 лист файла test.xls по строкам
-            for(Cell cell : row){             // для строки файла test.xls перебираем ячейки
-                System.out.println(getCellText(cell)); // выводим то что нашли в ячейке
-                box [count] = getCellText(cell); // загружаем в массив box, то что получили из test.xls
-                count++;
-
-            }
-        }
-
-        for (int j=0; j< count; j++) {
-            System.out.println(box [j]);
-        }
+        FileInputStream fisOne = new FileInputStream("test_1.xls");
+        Workbook workB = new HSSFWorkbook(fisOne);
 
 
-    }
-    //метод для вывода из ячейки различных типов данных
+        String result0 = workA.getSheetAt(0).getRow(2).getCell(3).getStringCellValue();
+        System.out.println(result0);
+
+        String result1 = workB.getSheetAt(0).getRow(2).getCell(3).getStringCellValue();
+        System.out.println(result1);
+
+        fis.close();
+        fisOne.close();
+
+        Sheet sheet0 = workB.getSheetAt(0);
+        Row row0 = sheet0.getRow(2);
+        Cell cell0 = row0.getCell(3);
+        cell0.setCellValue("АГА");
+
+        FileOutputStream writeStream = new FileOutputStream("test_1.xls");
+        workB.write(writeStream);
+        writeStream.close();
+
+
+
+
+
+
+
+    /*//метод для вывода из ячейки различных типов данных
     public static String getCellText(Cell cell) {
 
         String result = "";
@@ -96,5 +99,7 @@ public class Main {
                 break;
         }
         return result;
+    }*/
+
     }
 }

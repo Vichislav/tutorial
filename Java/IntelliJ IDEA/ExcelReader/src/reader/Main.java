@@ -49,27 +49,35 @@ public class Main {
         FileInputStream streamB = new FileInputStream("test_1.xls");
         Workbook workB = new HSSFWorkbook(streamB);
 
-        int count = 2;
+        CellStyle newStyle = workB.createCellStyle();
+        //style.setFillBackgroundColor(IndexedColors.RED.getIndex());
+        newStyle.setFillPattern(FillPatternType.LESS_DOTS);
 
-        while (count<5) {
+        int rowCount = 2;
+        int cellCount = 4; //счетчик не перешагивает, выяснить почему
 
-            String result0 = workA.getSheetAt(0).getRow(count).getCell(3).getStringCellValue(); // получаем данные 1
-            System.out.println(result0);
+        while (cellCount < 6) {
+            while (rowCount < 5) {
 
-            String result1 = workB.getSheetAt(0).getRow(count).getCell(3).getStringCellValue(); // получаем данные 2
-            System.out.println(result1);
+                String result0 = workA.getSheetAt(0).getRow(rowCount).getCell(cellCount).getStringCellValue(); // получаем данные 1
+                System.out.println(result0);
 
+                String result1 = workB.getSheetAt(0).getRow(rowCount).getCell(cellCount).getStringCellValue(); // получаем данные 2
+                System.out.println(result1);
 
+                if (result0 != null && result1 != null){
+                    if (!result0.equals(result1)) {
+                        // придаем текущей ячейке новый стиль
+                        Sheet sheet0 = workB.getSheetAt(0);
+                        Row row0 = sheet0.getRow(rowCount);
+                        Cell cell0 = row0.getCell(cellCount);
+                        cell0.setCellStyle(newStyle);
+                    }
 
-            if (!result0.equals(result1)) {
-                // записываем данные 2 в измененном виде
-                Sheet sheet0 = workB.getSheetAt(0);
-                Row row0 = sheet0.getRow(count);
-                Cell cell0 = row0.getCell(3);
-                cell0.setCellValue("изменено");
-            }
-            count++;
-
+                }
+                rowCount++;
+        }
+            cellCount++;
         }
 
         streamA.close();

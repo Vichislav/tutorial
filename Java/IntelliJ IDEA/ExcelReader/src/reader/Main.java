@@ -8,6 +8,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbookFactory;
 import org.apache.poi.ss.usermodel.*;
 
 import java.io.*;
+import java.util.function.DoubleBinaryOperator;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -53,31 +54,82 @@ public class Main {
         //style.setFillBackgroundColor(IndexedColors.RED.getIndex());
         newStyle.setFillPattern(FillPatternType.LESS_DOTS);
 
-        int rowCount = 2;
-        int cellCount = 4; //счетчик не перешагивает, выяснить почему
 
-        while (cellCount < 6) {
-            while (rowCount < 5) {
+        for (int rowCount = 2; rowCount < 5; rowCount++)
+        {
+            for (int cellCount = 2; cellCount < 5; cellCount++)
+            {
+                System.out.println("_" + cellCount + "_" + rowCount);
 
-                String result0 = workA.getSheetAt(0).getRow(rowCount).getCell(cellCount).getStringCellValue(); // получаем данные 1
+                //String result0 = workA.getSheetAt(0).getRow(row).getCell(cell).getStringCellValue(); // получаем данные 1 добавить метод getCellText(Cell cell)
+                String result0 = "";
+                Sheet sheet0 = workA.getSheetAt(0);
+                Row row0 = sheet0.getRow(rowCount);
+                Cell cell0 = row0.getCell(cellCount);
+
+                switch (cell0.getCellType()) {
+                    case STRING:
+                        System.out.println(cell0.getRichStringCellValue().getString());
+                        break;
+                    case NUMERIC:
+                        if (DateUtil.isCellDateFormatted(cell0)) {
+                            result0 = cell0.getDateCellValue().toString();
+                        } else {
+                            result0 = Double.toString(cell0.getNumericCellValue());
+                        }
+                        break;
+                    case BOOLEAN:
+                        result0 = Boolean.toString(cell0.getBooleanCellValue());
+                        break;
+                    case FORMULA:
+                        result0 = cell0.getCellFormula().toString();
+                        break;
+                    default:
+                        break;
+                }
+
                 System.out.println(result0);
 
-                String result1 = workB.getSheetAt(0).getRow(rowCount).getCell(cellCount).getStringCellValue(); // получаем данные 2
+                //String result1 = workB.getSheetAt(0).getRow(rowCount).getCell(cellCount).getStringCellValue(); // получаем данные 2
+                String result1 = "";
+                Sheet sheet1 = workB.getSheetAt(0);
+                Row row1 = sheet1.getRow(rowCount);
+                Cell cell1 = row1.getCell(cellCount);
+
+                switch (cell1.getCellType()) {
+                    case STRING:
+                        System.out.println(cell1.getRichStringCellValue().getString());
+                        break;
+                    case NUMERIC:
+                        if (DateUtil.isCellDateFormatted(cell1)) {
+                            result1 = cell1.getDateCellValue().toString();
+                        } else {
+                            result1 = Double.toString(cell1.getNumericCellValue());
+                        }
+                        break;
+                    case BOOLEAN:
+                        result1 = Boolean.toString(cell1.getBooleanCellValue());
+                        break;
+                    case FORMULA:
+                        result1 = cell1.getCellFormula().toString();
+                        break;
+                    default:
+                        break;
+                }
                 System.out.println(result1);
 
-                if (result0 != null && result1 != null){
-                    if (!result0.equals(result1)) {
+                if (result0 != null && result1 != null)
+                {
+                    if (!result0.equals(result1))
+                    {
                         // придаем текущей ячейке новый стиль
-                        Sheet sheet0 = workB.getSheetAt(0);
-                        Row row0 = sheet0.getRow(rowCount);
-                        Cell cell0 = row0.getCell(cellCount);
-                        cell0.setCellStyle(newStyle);
+//                        Sheet sheet1 = workB.getSheetAt(0);
+//                        Row row1 = sheet1.getRow(rowCount);
+//                        Cell cell1 = row1.getCell(cellCount);
+                        cell1.setCellStyle(newStyle);
                     }
-
                 }
-                rowCount++;
-        }
-            cellCount++;
+            }
         }
 
         streamA.close();
@@ -87,40 +139,6 @@ public class Main {
         FileOutputStream writeStream = new FileOutputStream("test_1.xls");
         workB.write(writeStream);
         writeStream.close();
-
-
-
-
-
-
-
-    /*//метод для вывода из ячейки различных типов данных
-    public static String getCellText(Cell cell) {
-
-        String result = "";
-
-        switch (cell.getCellType()) {
-            case STRING:
-                System.out.println(cell.getRichStringCellValue().getString());
-                break;
-            case NUMERIC:
-                if (DateUtil.isCellDateFormatted(cell)) {
-                    result = cell.getDateCellValue().toString();
-                } else {
-                    result = Double.toString(cell.getNumericCellValue());
-                }
-                break;
-            case BOOLEAN:
-                result = Boolean.toString(cell.getBooleanCellValue());
-                break;
-            case FORMULA:
-                result = cell.getCellFormula().toString();
-                break;
-            default:
-                break;
-        }
-        return result;
-    }*/
 
     }
 }

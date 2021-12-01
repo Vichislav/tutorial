@@ -56,9 +56,9 @@ public class Main {
         newStyle.setFillPattern(FillPatternType.LESS_DOTS);
 
 
-        for (int rowCount = 0; rowCount < 5; rowCount++)
+        for (int rowCount = 0; rowCount < 17; rowCount++)
         {
-            for (int cellCount = 0; cellCount < 5; cellCount++)
+            for (int cellCount = 0; cellCount < 17; cellCount++)
             {
                 try {
                     System.out.println("_" + cellCount + "_" + rowCount);
@@ -71,7 +71,7 @@ public class Main {
 
                     switch (cell0.getCellType()) {
                         case STRING:
-                            System.out.println(cell0.getRichStringCellValue().getString());
+                            result0 = cell0.getRichStringCellValue().getString();
                             break;
                         case NUMERIC:
                             if (DateUtil.isCellDateFormatted(cell0)) {
@@ -100,7 +100,7 @@ public class Main {
 
                     switch (cell1.getCellType()) {
                         case STRING:
-                            System.out.println(cell1.getRichStringCellValue().getString());
+                            result1 = cell1.getRichStringCellValue().getString();
                             break;
                         case NUMERIC:
                             if (DateUtil.isCellDateFormatted(cell1)) {

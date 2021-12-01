@@ -24,9 +24,8 @@ public final class ParsingExcel {
         newStyle.setFillForegroundColor(IndexedColors.GREY_40_PERCENT.getIndex());
         newStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 
-        int quantityRow = workbookA.getSheetAt(0).getPhysicalNumberOfRows();
 
-        for (int rowCount = 0; rowCount < quantityRow; rowCount++) {
+        for (int rowCount = 0; rowCount < workbookA.getSheetAt(0).getPhysicalNumberOfRows(); rowCount++) {
             for (int cellCount = 0; cellCount < workbookA.getSheetAt(0).getRow(rowCount).getPhysicalNumberOfCells(); cellCount++) {
                 try {
                     Cell cell0 = workbookA.getSheetAt(0).getRow(rowCount).getCell(cellCount);

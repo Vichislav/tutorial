@@ -17,7 +17,7 @@ public final class ParsingExcel {
         FileInputStream fileInputStreamB = new FileInputStream(filePath2);
         Workbook workB = new HSSFWorkbook(fileInputStreamB);
 
-        FileOutputStream fileOutputStreamB = new FileOutputStream("test_1.xls");
+        FileOutputStream fileOutputStreamB = new FileOutputStream(filePath2);
 
         CellStyle newStyle = workB.createCellStyle();
         newStyle.setFillForegroundColor(IndexedColors.GREY_40_PERCENT.getIndex());

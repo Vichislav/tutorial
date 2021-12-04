@@ -29,8 +29,10 @@ public class HelloController {
 
     @FXML
     void initialize() {
+        authSigInButton.setOnAction(actionEvent -> {
+            System.out.println("Вы нажали кнопку войти");
 
-
+        });
     }
 
 }

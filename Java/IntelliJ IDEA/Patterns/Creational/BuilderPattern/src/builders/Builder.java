@@ -1,5 +1,6 @@
 package builders;
 
+import cars.CarType;
 import components.Engine;
 import components.GPSNavigator;
 import components.Transmission;

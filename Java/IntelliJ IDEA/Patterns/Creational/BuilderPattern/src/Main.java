@@ -9,7 +9,7 @@ import director.Director;
 /**
  * Демо-класс. Здесь всё сводится воедино.
  */
-public class Demo {
+public class Main {
 
     public static void main(String[] args) {
         Director director = new Director();
@@ -18,7 +18,7 @@ public class Demo {
         // (приложения). Приложение само знает какой строитель использовать,
         // чтобы получить нужный продукт.
         CarBuilder builder = new CarBuilder();
-        director.constructSportsCar(builder);
+        director.constructCityCar(builder);
 
         // Готовый продукт возвращает строитель, так как Директор чаще всего не
         // знает и не зависит от конкретных классов строителей и продуктов.
@@ -29,7 +29,7 @@ public class Demo {
         CarManualBuilder manualBuilder = new CarManualBuilder();
 
         // Директор может знать больше одного рецепта строительства.
-        director.constructSportsCar(manualBuilder);
+        director.constructCityCar(manualBuilder);
         Manual carManual = manualBuilder.getResult();
         System.out.println("\nCar manual built:\n" + carManual.print());
     }

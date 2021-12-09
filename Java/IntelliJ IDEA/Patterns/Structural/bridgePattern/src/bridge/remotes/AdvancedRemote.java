@@ -5,7 +5,7 @@ import bridge.devices.Device;
 public class AdvancedRemote extends BasicRemote {
 
     public AdvancedRemote(Device device) {
-        super.device = device;
+        super.device = device; // обращаемся к device родительского класса BasicRemote
     }
 
     public void mute() {

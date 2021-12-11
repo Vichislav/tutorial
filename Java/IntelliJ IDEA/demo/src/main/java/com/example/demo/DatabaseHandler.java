@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -11,8 +12,20 @@ public class DatabaseHandler extends Configs {
     public Connection getDbConnection() throws ClassNotFoundException, SQLException {
         //строка подкл. к бд со всеми нужными данными
         //"jdbc:mysql//" - специальный плагин связи java с бд
-        String connectionString = "jdbc:mysql//" + dbHost + ":" + dbPort + "/" + dbName;
-        Class.forName("com.mysql.jdbc.Driver");
+        //String connectionString = "cj.jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbName;
+        String connectionString = "jdbc:mysql://localhost:3306/demo_schema";
+        //Class.forName("com.mysql.cj.jdbc.Drive");
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
 
         dbConnection = DriverManager.getConnection(connectionString, dbUser, dbPass);
 
@@ -23,7 +36,7 @@ public class DatabaseHandler extends Configs {
         // insert - это получается SQL запрос который сообщает что в такие то поля
         // мы их как раз перечисляем ниже нужно будет в таблицу USER_TABLE
         // вставить данные которые будут внаходится внутри "VALUES(?, ?, ?, ?, ?, ?)"
-        String insert = "INSERT INTO" + Const.USER_TABLE + "(" +
+        String insert = "INSERT INTO " + Const.USER_TABLE + "(" +
                 Const.USERS_FIRSTNAME + "," + Const.USERS_LASTNAME + "," +
                 Const.USERS_USERNAME + "," + Const.USERS_PASSWORD + "," +
                 Const.USERS_LOCATION + "," + Const.USER_GENDER + ")" +

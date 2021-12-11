@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -41,7 +42,20 @@ public class SignUpController {
     private TextField signUpName;
 
     @FXML
-    void initialize() {
+    void initialize()  {
+        DatabaseHandler dbHandler = new DatabaseHandler();
+
+        signUpButton.setOnAction(event -> {
+            try {
+                dbHandler.signUpUser(signUpName.getText(), signUpLastName.getText(),
+                        loginField1.getText(), passwordField1. getText(), signUpCountry.getText(), "Male");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        });
+
 
     }
 

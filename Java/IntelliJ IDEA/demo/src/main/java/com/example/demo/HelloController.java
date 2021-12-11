@@ -34,6 +34,22 @@ public class HelloController {
 
     @FXML
     void initialize() {
+        //добавляем слушателя событий для authSigInButton
+        authSigInButton.setOnAction(event -> {
+            //забираем текст из поля loginField удаляем лишние пробелы при
+            //помощи метода trim(), помещаем текст в переменную  loginText
+            String loginText = loginField.getText().trim();
+            // -//-
+            String loginPassword = passwordField.getText().trim();
+
+            if(!loginText.equals("") && !loginPassword.equals("") ) {
+                loginUser(loginText, loginPassword);
+            }
+            else {
+                System.out.println("Login & Password not found");
+            }
+        } );
+
         loginSignUpButton.setOnAction(actionEvent -> {
             loginSignUpButton.getScene().getWindow().hide(); // метод сцены, метод окна (котрое в сцене), фун. скрыть
             FXMLLoader loader  = new FXMLLoader();
@@ -51,6 +67,10 @@ public class HelloController {
             stage.showAndWait();
 
         });
+    }
+
+    private void loginUser(String loginText, String loginPassword) {
+
     }
 
 }

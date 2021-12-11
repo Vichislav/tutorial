@@ -1,6 +1,7 @@
 package com.example.demo;
 
 public class Const {
+    //значение констант должны совпадать с наименованием колонок к бд
     public static final String USER_TABLE = "users";
 
     public static final String USERS_ID = "idusers";

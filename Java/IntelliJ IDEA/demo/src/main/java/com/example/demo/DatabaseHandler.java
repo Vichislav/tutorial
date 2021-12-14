@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.ResultSet;
 
 public class DatabaseHandler extends Configs {
     Connection dbConnection;
@@ -32,7 +33,7 @@ public class DatabaseHandler extends Configs {
         return dbConnection;
     }
     //в метод были добавлен проброс исключений (throws SQLException, ClassNotFoundException) т.е. IDEA ругалась строку с PreparedStatement
-    public void signUpUser (String firstName, String lastName, String userName, String password, String location, String gender) throws SQLException, ClassNotFoundException {
+    public void signUpUser (User user) throws SQLException, ClassNotFoundException {
         // insert - это получается SQL запрос который сообщает что в такие то поля
         // мы их как раз перечисляем ниже нужно будет в таблицу USER_TABLE
         // вставить данные которые будут внаходится внутри "VALUES(?, ?, ?, ?, ?, ?)"
@@ -44,14 +45,42 @@ public class DatabaseHandler extends Configs {
         // теперь "подготавливаем" данные для вставки
         PreparedStatement prSt = getDbConnection().prepareStatement(insert);
         //перечисляем нужные нам данные
-        prSt.setString(1, firstName);
-        prSt.setString(2, lastName);
-        prSt.setString(3, userName);
-        prSt.setString(4, password);
-        prSt.setString(5, location);
-        prSt.setString(6, gender);
+        prSt.setString(1, user.getFirstName());
+        prSt.setString(2, user.getLastName());
+        prSt.setString(3, user.getUserName());
+        prSt.setString(4, user.getPassword());
+        prSt.setString(5, user.getLocation());
+        prSt.setString(6, user.getGender());
 
         prSt.executeUpdate();
 
+    }
+    // ResultSet - это массив данных из нужной нам строки таблицы
+    // получаем вроде как по id
+    public ResultSet getUser (User user) {
+        ResultSet resSet = null;
+        //формируем  строку select - SQL запрос
+        //SELECT - выбрать, * - все, FROM - из (таблицы USER_TABLE)
+        // WHERE - где, поле USERS_USERNAME равно чему либо =?, AND - и
+        // поле USERS_PASSWORD равно чему либо "=?", чему мы укажем ниже
+        String select = "SELECT * FROM " + Const.USER_TABLE + " WHERE " +
+                Const.USERS_USERNAME + "=? AND " + Const.USERS_PASSWORD + "=?";
+
+        try {
+            PreparedStatement prSt = getDbConnection().prepareStatement(select);
+            //перечисляем нужные нам данные
+
+            prSt.setString(1, user.getUserName());
+            prSt.setString(2, user.getPassword());
+
+
+            resSet = prSt.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return resSet;
     }
 }

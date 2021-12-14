@@ -43,20 +43,37 @@ public class SignUpController {
 
     @FXML
     void initialize()  {
-        DatabaseHandler dbHandler = new DatabaseHandler();
 
         signUpButton.setOnAction(event -> {
-            try {
-                dbHandler.signUpUser(signUpName.getText(), signUpLastName.getText(),
-                        loginField1.getText(), passwordField1. getText(), signUpCountry.getText(), "Male");
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
+            signUpNewUser();
         });
 
+    }
 
+    private void signUpNewUser() {
+
+        DatabaseHandler dbHandler = new DatabaseHandler();
+
+        String firstName = signUpName.getText();
+        String lastName = signUpLastName.getText();
+        String userName = loginField1.getText();
+        String password = passwordField1.getText();
+        String location = signUpCountry.getText();
+        String gender;
+        if(signUpCheckBoxMale.isSelected())
+            gender = "Мужской";
+        else
+            gender = "Женский";
+
+        User user = new User(firstName, lastName, userName, password, location, gender);
+
+        try {
+            dbHandler.signUpUser(user);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
 }

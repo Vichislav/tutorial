@@ -28,11 +28,11 @@
             </ImageView>
             <TableView layoutY="76.0" prefHeight="200.0" prefWidth="1200.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="200.0">
               <columns>
-                <TableColumn fx:id="id" prefWidth="109.0" text="ID" />
-                <TableColumn fx:id="name" prefWidth="226.0" text="Name" />
-                  <TableColumn fx:id="amount" prefWidth="97.0" text="Amount" />
-                  <TableColumn fx:id="supplier" prefWidth="242.0" text="Supplier" />
-                  <TableColumn fx:id="price" prefWidth="225.0" text="Price" />
+                <TableColumn fx:id="idColumn" prefWidth="109.0" text="ID" />
+                <TableColumn fx:id="nameColumn" prefWidth="226.0" text="Name" />
+                  <TableColumn fx:id="amountColumn" prefWidth="97.0" text="Amount" />
+                  <TableColumn fx:id="supplierColumn" prefWidth="242.0" text="Supplier" />
+                  <TableColumn fx:id="priceColumn" prefWidth="225.0" text="Price" />
               </columns>
             </TableView>
             <HBox layoutX="150.0" layoutY="142.0" prefHeight="31.0" prefWidth="996.0">

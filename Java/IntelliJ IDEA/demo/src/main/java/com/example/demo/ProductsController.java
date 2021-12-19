@@ -2,11 +2,15 @@ package com.example.demo;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.beans.Observable;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
@@ -40,22 +44,22 @@ public class ProductsController {
     private TextField inputSupplier; // окно ввода текста
 
     @FXML
-    private TableView<?> productsTable;
+    private TableView<Products> productsTable;
 
     @FXML
-    private TableColumn<?, ?> id; // колонка
+    private TableColumn<Products, Integer> idColumn; // колонка
 
     @FXML
-    private TableColumn<?, ?> name; //колонка
+    private TableColumn<Products, String> nameColumn; //колонка
 
     @FXML
-    private TableColumn<?, ?> amount; //колонка
+    private TableColumn<Products, Double> amountColumn; //колонка
 
     @FXML
-    private TableColumn<?, ?> price; //колонка
+    private TableColumn<Products, Double> priceColumn; //колонка
 
     @FXML
-    private TableColumn<?, ?> supplier; //колонка
+    private TableColumn<Products, String> supplierColumn; //колонка
 
     @FXML
     private Button remove;
@@ -66,23 +70,28 @@ public class ProductsController {
 
 
     @FXML
-    void initialize() {
-        assert add != null : "fx:id=\"add\" was not injected: check your FXML file 'app.fxml'.";
-        assert amount != null : "fx:id=\"amount\" was not injected: check your FXML file 'app.fxml'.";
-        assert homeImage != null : "fx:id=\"homeImage\" was not injected: check your FXML file 'app.fxml'.";
-        assert id != null : "fx:id=\"id\" was not injected: check your FXML file 'app.fxml'.";
-        assert inputAmount != null : "fx:id=\"inputAmount\" was not injected: check your FXML file 'app.fxml'.";
-        assert inputBox != null : "fx:id=\"inputBox\" was not injected: check your FXML file 'app.fxml'.";
-        assert inputId != null : "fx:id=\"inputId\" was not injected: check your FXML file 'app.fxml'.";
-        assert inputName != null : "fx:id=\"inputName\" was not injected: check your FXML file 'app.fxml'.";
-        assert inputPrice != null : "fx:id=\"inputPrice\" was not injected: check your FXML file 'app.fxml'.";
-        assert inputSupplier != null : "fx:id=\"inputSupplier\" was not injected: check your FXML file 'app.fxml'.";
-        assert name != null : "fx:id=\"name\" was not injected: check your FXML file 'app.fxml'.";
-        assert price != null : "fx:id=\"price\" was not injected: check your FXML file 'app.fxml'.";
-        assert productsTable != null : "fx:id=\"productsTable\" was not injected: check your FXML file 'app.fxml'.";
-        assert remove != null : "fx:id=\"remove\" was not injected: check your FXML file 'app.fxml'.";
-        assert supplier != null : "fx:id=\"supplier\" was not injected: check your FXML file 'app.fxml'.";
+    void initialize(URL url, ResourceBundle resourceBundle) {
+        //
+        idColumn.setCellValueFactory(new PropertyValueFactory<Products, Integer>("id"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<Products, String>("name"));
+        amountColumn.setCellValueFactory(new PropertyValueFactory<Products, Double>("amount"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<Products, Double>("price"));
+        supplierColumn.setCellValueFactory(new PropertyValueFactory<Products, String>("supplier"));
 
+        //кнопка добавить
+        add.setOnAction(event -> {
+            Products products = new Products(Integer.parseInt(inputId.getText()), inputName.getText(),
+                    Double.parseDouble(inputAmount.getText()), Double.parseDouble(inputPrice.getText()), inputSupplier.getText());
+            ObservableList<Products> products1 = productsTable.getItems();
+            products1.add(products);
+            productsTable.setItems(products1);
+        });
+
+        //кнопка удалить
+        remove.setOnAction(event -> {
+            int selectedID = productsTable.getSelectionModel().getSelectedIndex();
+            productsTable.getItems().remove(selectedID);
+        });
     }
 
 }

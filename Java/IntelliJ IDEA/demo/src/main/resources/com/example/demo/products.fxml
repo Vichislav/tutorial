@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #2E3348;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.ProductsController">
+    <children>
+        <AnchorPane layoutY="90.0" prefHeight="712.0" prefWidth="1200.0" style="-fx-background-color: #fafafa;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <children>
+                <Label layoutX="542.0" layoutY="14.0" text="Products" textFill="#575656">
+                    <font>
+                        <Font name="Times New Roman" size="36.0" />
+                    </font>
+                </Label>
+            <ImageView fx:id="homeImage" fitHeight="91.0" fitWidth="117.0" layoutX="1079.0" layoutY="595.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../java/assets/home.jpg" />
+               </image>
+            </ImageView>
+            <TableView layoutY="76.0" prefHeight="200.0" prefWidth="1200.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="200.0">
+              <columns>
+                <TableColumn fx:id="id" prefWidth="109.0" text="ID" />
+                <TableColumn fx:id="name" prefWidth="226.0" text="Name" />
+                  <TableColumn fx:id="amount" prefWidth="97.0" text="Amount" />
+                  <TableColumn fx:id="supplier" prefWidth="242.0" text="Supplier" />
+                  <TableColumn fx:id="price" prefWidth="225.0" text="Price" />
+              </columns>
+            </TableView>
+            <HBox layoutX="150.0" layoutY="142.0" prefHeight="31.0" prefWidth="996.0">
+               <children>
+                  <TextField prefHeight="25.0" prefWidth="111.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </TextField>
+                  <TextField prefHeight="25.0" prefWidth="230.0" />
+                  <TextField prefHeight="25.0" prefWidth="90.0" />
+                  <TextField prefHeight="25.0" prefWidth="241.0" />
+                  <TextField prefHeight="25.0" prefWidth="227.0" />
+                  <Button mnemonicParsing="false" prefHeight="24.0" prefWidth="78.0" text="add">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <Button layoutX="558.0" layoutY="432.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" text="Remove" />
+            <HBox layoutX="150.0" layoutY="117.0" prefHeight="25.0" prefWidth="900.0">
+               <children>
+                  <Label text="ID">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="50.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label text="Name">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="140.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label text="Amount">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="120.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label text="Supplier">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="120.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label text="Price">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="190.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            </children>
+        </AnchorPane>
+        <Label layoutX="521.0" layoutY="35.0" text="Demo App" textFill="WHITE">
+            <font>
+                <Font name="Times New Roman" size="36.0" />
+            </font>
+        </Label>
+    </children>
+</AnchorPane>

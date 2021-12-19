@@ -79,7 +79,7 @@ public class HelloController {
         }
         if (counter >= 1) {
             System.out.println("Success!");
-            openNewScene("app.fxml");
+            openNewScene("products.fxml");
         }
         else {
             System.out.println("User not exist / password not correct ");

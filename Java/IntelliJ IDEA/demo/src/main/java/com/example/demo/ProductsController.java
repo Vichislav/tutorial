@@ -78,6 +78,7 @@ public class ProductsController {
    @FXML
    private void clickAdd (ActionEvent event) {
        System.out.println("add work"); // проверка
+
        //через конструктор класса Products создаем экземпляр класса и загоняем туда значение из окон input
        Products products = new Products(
                Integer.parseInt(inputId.getText()),       // id
@@ -85,6 +86,15 @@ public class ProductsController {
                Double.parseDouble(inputAmount.getText()), // Amount
                Double.parseDouble(inputPrice.getText()),  // Price
                inputSupplier.getText());                  // Supplier
+
+        // присваиваем отдельной колонке соотвествующее поле(свойство мб) класса
+       idColumn.setCellValueFactory(new PropertyValueFactory<Products, Integer>("id"));
+       nameColumn.setCellValueFactory(new PropertyValueFactory<Products, String>("name"));
+       amountColumn.setCellValueFactory(new PropertyValueFactory<Products, Double>("amount"));
+       priceColumn.setCellValueFactory(new PropertyValueFactory<Products, Double>("price"));
+       supplierColumn.setCellValueFactory(new PropertyValueFactory<Products, String>("supplier"));
+
+        //вывод значений
        ObservableList<Products> products1 = productsTable.getItems();
        products1.add(products);
        productsTable.setItems(products1);
@@ -104,14 +114,6 @@ public class ProductsController {
     @FXML
     void initialize (URL url, ResourceBundle resourceBundle) {
         System.out.println("initialize work");
-
-
-        idColumn.setCellValueFactory(new PropertyValueFactory<Products, Integer>("id"));
-        nameColumn.setCellValueFactory(new PropertyValueFactory<Products, String>("name"));
-        amountColumn.setCellValueFactory(new PropertyValueFactory<Products, Double>("amount"));
-        priceColumn.setCellValueFactory(new PropertyValueFactory<Products, Double>("price"));
-        supplierColumn.setCellValueFactory(new PropertyValueFactory<Products, String>("supplier"));
-
 
     }
 

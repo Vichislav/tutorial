@@ -55,7 +55,7 @@ public class DatabaseHandler extends Configs {
         prSt.executeUpdate();
 
     }
-
+    // метод для внесения в базу данных, данных из таблицы Products
     public void enterProducts (Products products) throws SQLException, ClassNotFoundException {
         // insert - это получается SQL запрос который сообщает, что в такие то поля,
         // мы их как раз перечисляем ниже, нужно будет в таблицу USER_TABLE
@@ -63,10 +63,11 @@ public class DatabaseHandler extends Configs {
         String insert = "INSERT INTO " + Const.PRODUCTS_TABLE + "(" +
                 Const.PRODUCTS_NAME + "," + Const.PRODUCTS_AMOUNT + "," +
                 Const.PRODUCTS_PRICE + "," + Const.PRODUCTS_SUPPLIER  + ")" +
-                "VALUES(?, ?, ?, ?,)";
+                "VALUES(?, ?, ?, ?)";
         // теперь "подготавливаем" данные для вставки
         PreparedStatement prSt = getDbConnection().prepareStatement(insert);
         //перечисляем нужные нам данные
+
         prSt.setString(1, products.getName());
         prSt.setDouble(2, products.getAmount());
         prSt.setDouble(3, products.getPrice());

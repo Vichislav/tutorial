@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import javafx.beans.Observable;
@@ -91,6 +92,8 @@ public class ProductsController {
        priceColumn.setCellValueFactory(new PropertyValueFactory<Products, Double>("price"));
        supplierColumn.setCellValueFactory(new PropertyValueFactory<Products, String>("supplier"));
 
+       enterProductsButton ();
+
         //вывод значений
        ObservableList<Products> products1 = productsTable.getItems();
        products1.add(products);
@@ -110,6 +113,25 @@ public class ProductsController {
     void initialize (URL url, ResourceBundle resourceBundle) {
         System.out.println("initialize work");
 
+    }
+
+    private void enterProductsButton () {
+
+        DatabaseHandler dbHandler = new DatabaseHandler();
+
+        Products products = new Products(
+                inputName.getText(),                       // Name
+                Double.parseDouble(inputAmount.getText()), // Amount
+                Double.parseDouble(inputPrice.getText()),  // Price
+                inputSupplier.getText());                  // Supplier
+
+        try {
+            dbHandler.enterProducts(products);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
 }

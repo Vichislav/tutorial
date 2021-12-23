@@ -70,9 +70,6 @@ public class ProductsController {
     @FXML
     private Button add;
 
-   /* ObservableList<Products> list = FXCollections.observableArrayList(
-            new Products(1, "Roll", 3, 1200, "OAO" )
-    );*/
 
     //кнопка add добавить строку
    @FXML
@@ -107,8 +104,6 @@ public class ProductsController {
         int selectedID = productsTable.getSelectionModel().getSelectedIndex();
         productsTable.getItems().remove(selectedID);
     }
-
-
 
 
     @FXML

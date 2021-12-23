@@ -61,10 +61,10 @@ public class HelloController {
     }
 
     private void loginUser(String loginText, String loginPassword) {
-        DatabaseHandler dbHandler = new DatabaseHandler();
-        User user = new User();
-        user.setUserName(loginText);
-        user.setPassword(loginPassword);
+        DatabaseHandler dbHandler = new DatabaseHandler(); //экземпляр класса DatabaseHandler в ссылку dbHandler
+        User user = new User();                            //экземпляр класса User в ссылку user
+        user.setUserName(loginText);                       //заводим данные loginText в объект user через метод setUserName
+        user.setPassword(loginPassword);                   //заводим данные loginPassword в объект user через метод setPassword
         ResultSet result = dbHandler.getUser(user);
 
         int counter = 0;

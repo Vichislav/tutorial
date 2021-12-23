@@ -34,9 +34,9 @@ public class DatabaseHandler extends Configs {
     }
     //в метод были добавлен проброс исключений (throws SQLException, ClassNotFoundException) т.е. IDEA ругалась строку с PreparedStatement
     public void signUpUser (User user) throws SQLException, ClassNotFoundException {
-        // insert - это получается SQL запрос который сообщает что в такие то поля
-        // мы их как раз перечисляем ниже нужно будет в таблицу USER_TABLE
-        // вставить данные которые будут внаходится внутри "VALUES(?, ?, ?, ?, ?, ?)"
+        // insert - это получается SQL запрос который сообщает, что в такие то поля,
+        // мы их как раз перечисляем ниже, нужно будет в таблицу USER_TABLE
+        // вставить данные, которые будут находится внутри "VALUES(?, ?, ?, ?, ?, ?)"
         String insert = "INSERT INTO " + Const.USER_TABLE + "(" +
                 Const.USERS_FIRSTNAME + "," + Const.USERS_LASTNAME + "," +
                 Const.USERS_USERNAME + "," + Const.USERS_PASSWORD + "," +
@@ -55,6 +55,28 @@ public class DatabaseHandler extends Configs {
         prSt.executeUpdate();
 
     }
+
+    public void enterProducts (Products products) throws SQLException, ClassNotFoundException {
+        // insert - это получается SQL запрос который сообщает, что в такие то поля,
+        // мы их как раз перечисляем ниже, нужно будет в таблицу USER_TABLE
+        // вставить данные, которые будут находится внутри "VALUES(?, ?, ?, ?, ?, ?)"
+        String insert = "INSERT INTO " + Const.PRODUCTS_TABLE + "(" +
+                Const.PRODUCTS_NAME + "," + Const.PRODUCTS_AMOUNT + "," +
+                Const.PRODUCTS_PRICE + "," + Const.PRODUCTS_SUPPLIER  + ")" +
+                "VALUES(?, ?, ?, ?,)";
+        // теперь "подготавливаем" данные для вставки
+        PreparedStatement prSt = getDbConnection().prepareStatement(insert);
+        //перечисляем нужные нам данные
+        prSt.setString(1, products.getName());
+        prSt.setDouble(2, products.getAmount());
+        prSt.setDouble(3, products.getPrice());
+        prSt.setString(4, products.getSupplier());
+
+
+        prSt.executeUpdate();
+
+    }
+
     // ResultSet - это массив данных из нужной нам строки таблицы
     // получаем вроде как по id
     public ResultSet getUser (User user) {
@@ -74,7 +96,7 @@ public class DatabaseHandler extends Configs {
             prSt.setString(2, user.getPassword());
 
 
-            resSet = prSt.executeQuery();
+            resSet = prSt.executeQuery(); //команда выборки данных...
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {

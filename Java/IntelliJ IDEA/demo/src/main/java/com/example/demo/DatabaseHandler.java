@@ -106,4 +106,42 @@ public class DatabaseHandler extends Configs {
 
         return resSet;
     }
+
+    // ResultSet - это массив данных из нужной нам строки таблицы
+    // получаем вроде как по id
+    public ResultSet getDbProducts (Products products) {
+        ResultSet resSet = null;
+        //формируем  строку select - SQL запрос
+        //SELECT - выбрать, * - все, FROM - из (таблицы USER_TABLE)
+        // WHERE - где, поле USERS_USERNAME равно чему либо =?, AND - и
+        // поле USERS_PASSWORD равно чему либо "=?", чему мы укажем ниже
+        String select = "SELECT * FROM " + Const.PRODUCTS_TABLE + " WHERE " + // "=?"
+                Const.PRODUCTS_ID + "=? AND " + Const.PRODUCTS_NAME + "=? AND " +
+                Const.PRODUCTS_AMOUNT + "=? AND " + Const.PRODUCTS_PRICE + "=? AND " +
+                Const.PRODUCTS_SUPPLIER + "=?";
+
+        try {
+            PreparedStatement prSt = getDbConnection().prepareStatement(select);
+            //перечисляем нужные нам данные
+
+            prSt.setInt(1, products.getId());
+            prSt.setString(2, products.getName());
+            prSt.setDouble(3, products.getAmount());
+            prSt.setDouble(4, products.getPrice());
+            prSt.setString(5, products.getSupplier());
+
+
+
+            resSet = prSt.executeQuery(); //команда выборки данных...
+
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return resSet;
+    }
 }

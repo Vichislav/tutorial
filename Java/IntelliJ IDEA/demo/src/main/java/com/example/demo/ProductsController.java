@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import java.net.URL;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
@@ -98,6 +99,28 @@ public class ProductsController {
        ObservableList<Products> products1 = productsTable.getItems();
        products1.add(products);
        productsTable.setItems(products1);
+        //достаем данные из базы данных, которые вот только выше туда клали... при помощи метода getDbProducts
+       DatabaseHandler dbHandler = new DatabaseHandler(); // что бы добраться до метода getDbProducts создали экземпляр класса
+       ResultSet result = dbHandler.getDbProducts(products);
+
+
+       try {
+          int id = result.getInt("idproducts");
+          String name = result.getString("productsname");
+          Double price = result.getDouble("productsamount");
+
+          System.out.printf("%d. %s - %d \n", id, name, price);
+
+       } catch (SQLException e) {
+           e.printStackTrace();
+       }
+
+
+
+
+
+
+
    }
 
    //кнопка remove удалить строку

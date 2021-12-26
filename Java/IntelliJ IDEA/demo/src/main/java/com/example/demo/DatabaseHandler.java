@@ -1,16 +1,12 @@
 package com.example.demo;
 
 import java.lang.reflect.InvocationTargetException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.ResultSet;
+import java.sql.*;
 
 public class DatabaseHandler extends Configs {
     Connection dbConnection;
 
-    public Connection getDbConnection() throws ClassNotFoundException, SQLException {
+        public Connection getDbConnection() throws ClassNotFoundException, SQLException {
         //строка подкл. к бд со всеми нужными данными
         //"jdbc:mysql//" - специальный плагин связи java с бд
         //String connectionString = "cj.jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbName;
@@ -56,7 +52,7 @@ public class DatabaseHandler extends Configs {
 
     }
     // метод для внесения в базу данных, данных из таблицы Products
-    public void enterProducts (Products products) throws SQLException, ClassNotFoundException {
+    public void enterProducts (Product products) throws SQLException, ClassNotFoundException {
         // insert - это получается SQL запрос который сообщает, что в такие то поля,
         // мы их как раз перечисляем ниже, нужно будет в таблицу USER_TABLE
         // вставить данные, которые будут находится внутри "VALUES(?, ?, ?, ?, ?, ?)"
@@ -109,26 +105,24 @@ public class DatabaseHandler extends Configs {
 
     // ResultSet - это массив данных из нужной нам строки таблицы
     // получаем вроде как по id
-    public ResultSet getDbProducts (Products products) {
+    public ResultSet getDbProducts() {
         ResultSet resSet = null;
         //формируем  строку select - SQL запрос
         //SELECT - выбрать, * - все, FROM - из (таблицы USER_TABLE)
         // WHERE - где, поле USERS_USERNAME равно чему либо =?, AND - и
         // поле USERS_PASSWORD равно чему либо "=?", чему мы укажем ниже
-        String select = "SELECT * FROM " + Const.PRODUCTS_TABLE + " WHERE " + // "=?"
-                Const.PRODUCTS_ID + "=? AND " + Const.PRODUCTS_NAME + "=? AND " +
-                Const.PRODUCTS_AMOUNT + "=? AND " + Const.PRODUCTS_PRICE + "=? AND " +
-                Const.PRODUCTS_SUPPLIER + "=?";
+        String select = "SELECT * FROM " + Const.PRODUCTS_TABLE;
 
         try {
             PreparedStatement prSt = getDbConnection().prepareStatement(select);
+
             //перечисляем нужные нам данные
 
-            prSt.setInt(1, products.getId());
+            /*prSt.setInt(1, products.getId());
             prSt.setString(2, products.getName());
             prSt.setDouble(3, products.getAmount());
             prSt.setDouble(4, products.getPrice());
-            prSt.setString(5, products.getSupplier());
+            prSt.setString(5, products.getSupplier());*/
 
 
 

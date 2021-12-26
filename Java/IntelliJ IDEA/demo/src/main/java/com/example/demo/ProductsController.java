@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -49,22 +48,22 @@ public class ProductsController {
     private TextField inputSupplier; // окно ввода текста
 
     @FXML
-    private TableView<Products> productsTable;
+    private TableView<Product> productsTable;
 
     @FXML
-    private TableColumn<Products, Integer> idColumn; // колонка
+    private TableColumn<Product, Integer> idColumn; // колонка
 
     @FXML
-    private TableColumn<Products, String> nameColumn; //колонка
+    private TableColumn<Product, String> nameColumn; //колонка
 
     @FXML
-    private TableColumn<Products, Double> amountColumn; //колонка
+    private TableColumn<Product, Double> amountColumn; //колонка
 
     @FXML
-    private TableColumn<Products, Double> priceColumn; //колонка
+    private TableColumn<Product, Double> priceColumn; //колонка
 
     @FXML
-    private TableColumn<Products, String> supplierColumn; //колонка
+    private TableColumn<Product, String> supplierColumn; //колонка
 
     @FXML
     private Button remove;
@@ -76,7 +75,8 @@ public class ProductsController {
     //кнопка add добавить строку
    @FXML
    private void clickAdd (ActionEvent event) {
-       System.out.println("add work"); // проверка
+       //enterProductsButton();
+       /*System.out.println("add work"); // проверка
 
        //через конструктор класса Products создаем экземпляр класса и загоняем туда значение из окон input
        Products products = new Products(
@@ -93,34 +93,53 @@ public class ProductsController {
        priceColumn.setCellValueFactory(new PropertyValueFactory<Products, Double>("price"));
        supplierColumn.setCellValueFactory(new PropertyValueFactory<Products, String>("supplier"));
 
-       enterProductsButton ();
 
         //вывод значений
        ObservableList<Products> products1 = productsTable.getItems();
        products1.add(products);
        productsTable.setItems(products1);
         //достаем данные из базы данных, которые вот только выше туда клали... при помощи метода getDbProducts
+
+*/
+       System.out.println("________________________________"); // проверка
+
        DatabaseHandler dbHandler = new DatabaseHandler(); // что бы добраться до метода getDbProducts создали экземпляр класса
-       ResultSet result = dbHandler.getDbProducts(products);
 
 
+       idColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("id"));
+       nameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
+       amountColumn.setCellValueFactory(new PropertyValueFactory<Product, Double>("amount"));
+       priceColumn.setCellValueFactory(new PropertyValueFactory<Product, Double>("price"));
+       supplierColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("supplier"));
+
+       ResultSet result = dbHandler.getDbProducts();
+
+       //productsTable.getItems();
+       ObservableList<Product> products = FXCollections.observableArrayList();
+
+       int counter = 0;
        try {
-          int id = result.getInt("idproducts");
-          String name = result.getString("productsname");
-          Double price = result.getDouble("productsamount");
+           while(result.next()) {
+               counter++;
+               int id = result.getInt("idproducts");
+               String name = result.getString("productsname");
+               Double amount = result.getDouble("productsamount");
 
-          System.out.printf("%d. %s - %d \n", id, name, price);
+               Product product = new Product(result.getInt("idproducts"),
+                       result.getString("productsname"),
+                       result.getDouble("productsamount"),
+                       result.getDouble("productsprice"),
+                       result.getString("productssupplier"));
 
+               products.add(product);
+
+               System.out.println("counter = " + counter + "id = " + id + "productsname " + name + "productsamount" + amount);
+           }
        } catch (SQLException e) {
            e.printStackTrace();
        }
 
-
-
-
-
-
-
+       productsTable.setItems(products);
    }
 
    //кнопка remove удалить строку
@@ -142,7 +161,7 @@ public class ProductsController {
 
         DatabaseHandler dbHandler = new DatabaseHandler();
 
-        Products products = new Products(
+        Product products = new Product(
                 inputName.getText(),                       // Name
                 Double.parseDouble(inputAmount.getText()), // Amount
                 Double.parseDouble(inputPrice.getText()),  // Price

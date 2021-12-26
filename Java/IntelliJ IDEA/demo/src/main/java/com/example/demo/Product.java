@@ -1,13 +1,13 @@
 package com.example.demo;
 
-public class Products {
+public class Product {
     private int id;
     private String name;
     private double amount;
     private double price;
     private String supplier;
 
-    public Products(int id, String name, double amount, double price, String supplier) {
+    public Product(int id, String name, double amount, double price, String supplier) {
         this.id = id;
         this.name = name;
         this.amount = amount;
@@ -15,7 +15,7 @@ public class Products {
         this.supplier = supplier;
     }
 
-    public Products( String name, double amount, double price, String supplier) {
+    public Product(String name, double amount, double price, String supplier) {
 
         this.name = name;
         this.amount = amount;

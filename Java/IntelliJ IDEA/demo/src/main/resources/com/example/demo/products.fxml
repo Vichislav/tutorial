@@ -10,9 +10,10 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #2E3348;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.ProductsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #2E3348;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.ProductsController">
     <children>
         <AnchorPane layoutY="90.0" prefHeight="712.0" prefWidth="1200.0" style="-fx-background-color: #fafafa;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <children>
@@ -46,14 +47,14 @@
                   <TextField fx:id="inputAmount" prefHeight="25.0" prefWidth="90.0" />
                   <TextField fx:id="inputSupplier" prefHeight="25.0" prefWidth="241.0" />
                   <TextField fx:id="inputPrice" prefHeight="25.0" prefWidth="227.0" />
-                  <Button fx:id="add" onAction="#clickAdd" mnemonicParsing="false" prefHeight="24.0" prefWidth="78.0" text="add">
+                  <Button fx:id="add" mnemonicParsing="false" onAction="#clickAdd" prefHeight="24.0" prefWidth="78.0" text="add">
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>
                   </Button>
                </children>
             </HBox>
-            <Button fx:id="remove" onAction="#clickRemove" layoutX="558.0" layoutY="432.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" text="Remove" />
+            <Button fx:id="remove" layoutX="558.0" layoutY="432.0" mnemonicParsing="false" onAction="#clickRemove" prefHeight="25.0" prefWidth="84.0" text="Remove Line" />
             <HBox layoutX="150.0" layoutY="117.0" prefHeight="25.0" prefWidth="900.0">
                <children>
                   <Label text="ID">
@@ -98,6 +99,23 @@
                   </Label>
                </children>
             </HBox>
+            <VBox layoutX="1062.0" layoutY="200.0" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Button fx:id="updateDb" mnemonicParsing="false" onAction="#clickUpdateDb" prefHeight="25.0" prefWidth="74.0" text="Update DB">
+                     <VBox.margin>
+                        <Insets left="10.0" top="25.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="updateTable" mnemonicParsing="false" onAction="#clickUpdateTable" prefHeight="25.0" prefWidth="74.0" text="Update Table">
+                     <VBox.margin>
+                        <Insets left="10.0" top="25.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
             </children>
         </AnchorPane>
         <Label layoutX="521.0" layoutY="35.0" text="Demo App" textFill="WHITE">

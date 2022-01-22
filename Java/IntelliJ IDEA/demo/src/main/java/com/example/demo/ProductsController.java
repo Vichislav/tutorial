@@ -71,15 +71,89 @@ public class ProductsController {
     @FXML
     private Button add;
 
+    @FXML
+    private Button updateDb;
+
+    @FXML
+    private Button updateTable;
+
+    @FXML
+    private void clickUpdateDb (ActionEvent event) {
+        DatabaseHandler dbHandler = new DatabaseHandler();// что бы добраться до метода enterProducts создали экземпляр класса
+        System.out.println("пока так"); //проверка
+
+        //nameColumn.getCellValueFactory();
+
+
+
+        Product products = new Product(
+               // Integer.parseInt(inputId.getText()),       // id
+                inputName.getText(),                       // Name
+                Double.parseDouble(inputAmount.getText()), // Amount
+                Double.parseDouble(inputPrice.getText()),  // Price
+                inputSupplier.getText());                  // Supplier
+
+        try {
+            dbHandler.enterProducts(products);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
+        System.out.println("size = " ); //проверка
+
+
+    }
+
+    //ПЕРЕМЕЩАЕМ ДАННЫЕ ИЗ ДБ В ТАБЛИЦУ
+    @FXML
+    private void clickUpdateTable (ActionEvent event) {
+
+        DatabaseHandler dbHandler = new DatabaseHandler(); // что бы добраться до метода getDbProducts создали экземпляр класса
+
+        idColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("id"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
+        amountColumn.setCellValueFactory(new PropertyValueFactory<Product, Double>("amount"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<Product, Double>("price"));
+        supplierColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("supplier"));
+
+        ResultSet result = dbHandler.getDbProducts();
+
+        //productsTable.getItems();
+        ObservableList<Product> products = FXCollections.observableArrayList();
+
+        int counter = 0;
+        try {
+            while(result.next()) {
+                counter++;
+
+                Product product = new Product(result.getInt("idproducts"),
+                        result.getString("productsname"),
+                        result.getDouble("productsamount"),
+                        result.getDouble("productsprice"),
+                        result.getString("productssupplier"));
+
+                products.add(product);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        productsTable.setItems(products);
+
+    }
+
 
     //кнопка add добавить строку
    @FXML
    private void clickAdd (ActionEvent event) {
-       //enterProductsButton();
-       /*System.out.println("add work"); // проверка
+
+       System.out.println("add work"); // проверка
 
        //через конструктор класса Products создаем экземпляр класса и загоняем туда значение из окон input
-       Products products = new Products(
+       Product products = new Product(
                Integer.parseInt(inputId.getText()),       // id
                inputName.getText(),                       // Name
                Double.parseDouble(inputAmount.getText()), // Amount
@@ -87,23 +161,35 @@ public class ProductsController {
                inputSupplier.getText());                  // Supplier
 
         // присваиваем отдельной колонке соотвествующее поле(свойство мб) класса
-       idColumn.setCellValueFactory(new PropertyValueFactory<Products, Integer>("id"));
-       nameColumn.setCellValueFactory(new PropertyValueFactory<Products, String>("name"));
-       amountColumn.setCellValueFactory(new PropertyValueFactory<Products, Double>("amount"));
-       priceColumn.setCellValueFactory(new PropertyValueFactory<Products, Double>("price"));
-       supplierColumn.setCellValueFactory(new PropertyValueFactory<Products, String>("supplier"));
+       idColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("id"));
+       nameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
+       amountColumn.setCellValueFactory(new PropertyValueFactory<Product, Double>("amount"));
+       priceColumn.setCellValueFactory(new PropertyValueFactory<Product, Double>("price"));
+       supplierColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("supplier"));
 
 
-        //вывод значений
-       ObservableList<Products> products1 = productsTable.getItems();
+       // вывод значений
+       // берем данные(хз может ячейки) из productsTable и помещаем их в
+       // products1, который являет собой изменяемый список элементов типа Product
+       ObservableList<Product> products1 = productsTable.getItems();
+       //добавляем в полученный список данные из products
        products1.add(products);
+       //наполняем таблицу данными(хз) из  products1
        productsTable.setItems(products1);
-        //достаем данные из базы данных, которые вот только выше туда клали... при помощи метода getDbProducts
 
-*/
+
        System.out.println("________________________________"); // проверка
 
-       DatabaseHandler dbHandler = new DatabaseHandler(); // что бы добраться до метода getDbProducts создали экземпляр класса
+       //чистим инпуты
+       inputId.setText("");
+       inputName.setText("");
+       inputAmount.setText("");
+       inputPrice.setText("");
+       inputSupplier.setText("");
+
+
+        //ВЫВОД В ТАБЛИЦУ С БД
+       /*DatabaseHandler dbHandler = new DatabaseHandler(); // что бы добраться до метода getDbProducts создали экземпляр класса
 
 
        idColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("id"));
@@ -139,7 +225,7 @@ public class ProductsController {
            e.printStackTrace();
        }
 
-       productsTable.setItems(products);
+       productsTable.setItems(products);*/
    }
 
    //кнопка remove удалить строку

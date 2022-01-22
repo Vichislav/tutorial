@@ -28,6 +28,8 @@ public class DatabaseHandler extends Configs {
 
         return dbConnection;
     }
+
+
     //в метод были добавлен проброс исключений (throws SQLException, ClassNotFoundException) т.е. IDEA ругалась строку с PreparedStatement
     public void signUpUser (User user) throws SQLException, ClassNotFoundException {
         // insert - это получается SQL запрос который сообщает, что в такие то поля,
@@ -105,6 +107,8 @@ public class DatabaseHandler extends Configs {
 
     // ResultSet - это массив данных из нужной нам строки таблицы
     // получаем вроде как по id
+
+    //ПОЛУЧАЕМ ВСЕ ДАННЫЕ ИЗ ТАБЛИЦЫ PRODUCTS_TABLE
     public ResultSet getDbProducts() {
         ResultSet resSet = null;
         //формируем  строку select - SQL запрос
